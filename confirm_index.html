@@ -24,17 +24,19 @@
           case 1:
           sex = "男";
           break;
-          
+
           case 2:
           sex = "女";
           break;
-
-          default:
-           alert("無效的身分證");
         }
      
         if(sex !==""){
             document.getElementById("result").innerHTML = code +","+ sex  + " 通過驗證";
+        }
+        else
+        {
+            alert("無效的身分證");
+            document.getElementById("result").innerHTML = "";
         }
       }
     }
