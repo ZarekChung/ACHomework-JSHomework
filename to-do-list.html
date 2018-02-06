@@ -2,7 +2,12 @@
 <html>
 <head>
   <title>My To list</title>
-<script >
+  <style>
+    form{margin:0px; display:inline}
+
+  </style>
+
+  <script >
    
 
     function createToDo(){
@@ -16,6 +21,14 @@
 
       span.innerHTML = input;
       todo.appendChild(span);
+      
+      //判斷radio button
+      if(document.getElementById("urgent").checked){
+        span.style.color= "red";
+      }
+      if(document.getElementById("noturgent").checked){
+        span.style.color= "#006400";
+      }
 
       var replaceButton = document.createElement("button");
       replaceButton.textContent = "R";
@@ -42,7 +55,7 @@
            todo.removeChild(removieButoon);
         }
       }
-      
+
       document.getElementById("todolist").appendChild(todo);
       document.getElementById("input").value = "";
 
@@ -50,7 +63,13 @@
   </script>
 </head>
 <body>
+<nobr>
   <input type="text" name="input" id="input"><button onclick="createToDo()">+</button>
+  <form>
+  <input type="radio" id="urgent" name="imgsel" checked="checked" />緊急
+        <input type="radio" id="noturgent" name="imgsel"  />不緊急
+   </form>
+   </nobr>
   <div id="todolist"></div>
 </body>
 
