@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+  <script>
+  "use strict";
+  var state = true;
+  var dafaultTime = 5;
+  var timeLeft = dafaultTime;
+
+  window.onload = function(){
+    document.getElementById("timer").innerHTML = timeLeft;
+  };
+  function toggleLight(){
+    var image = document.getElementById("image");
+    state = !state;
+    image.src = state ? "img/on.jpg" : "img/off.jpg";
+    if(state)
+    {
+      
+       timeLeft = dafaultTime;
+       document.getElementById("timer").innerHTML = timeLeft;
+       id = setInterval(countDownTimer,1000);
+    }
+  }
+
+  
+  function toggleLightbySetting(){
+    //先判斷輸入的時間
+    var input = document.getElementById("setTime").value;
+    if(isNaN(input))
+    {
+      alert("輸入錯誤,請輸入數字");
+      return;
+    }
+
+    dafaultTime = input;
+    toggleLight();
+      
+  }
+
+  function countDownTimer(){
+    timeLeft--;
+    if(timeLeft <=0){
+      document.getElementById("image").src = "img/off.jpg";
+      state = false;
+       clearInterval(id);
+    }
+    document.getElementById("timer").innerHTML = timeLeft;
+  }
+  
+  var id = setInterval(countDownTimer,1000);
+  </script>
+</head>
+<body>
+  <div class="div" id="timer"></div>
+<img id="image" src="img/on.jpg">
+<button class="button" onclick="toggleLight()">ON <br>-<br>OFF</button>
+<br>
+ 時間: <input type="text" id="setTime">
+ <button class="button" onclick="toggleLightbySetting()">執行</button>
+</body>
+</html>
